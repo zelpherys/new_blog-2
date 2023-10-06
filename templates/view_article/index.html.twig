@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ViewArticleController!{% endblock %}
+
+
+{% block body %}
+
+  
+        <div class="col-lg-6 mx-auto mt-3">
+            <div class="card shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveaspectratio="xMidYMid slice" focusable="false">
+                    <title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text>
+                </svg>
+                <div class="card-body">
+                    <p class="card-text">
+                        <h1> {{articles.titreArticle|e}} </h1>
+                        <br>
+                        {{articles.contenuArticle|slice(0, 100)|raw}}. . .</p>
+
+                        {{articles.dateCreation|date("m/d/Y")}}
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                        </div>
+                        <small class="text-body-secondary">9 mins</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    
+
+{% endblock %}
