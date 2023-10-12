@@ -12,18 +12,40 @@
             {{form_start(form_article)}}
                 <div class="mb-3">
                 <label for="" class="form-label">Catégorie: </label>
-                {{form_row(form_article.idSousCategorie)}}
+                {{ form_row(form_article.idCategorie) }}
+                </div>
+                <label for="" class="form-label"> sous catégorie: </label>
+                {{ form_row(form_article.idSousCategorie) }}
                 </div>
                 <div class="mb-3">
                 <label for="" class="form-label">Le titre de votre article: </label>
-                {{form_row(form_article.titreArticle)}}
+                {{ form_row(form_article.titre_article) }}
                 </div>
                 <div class="mb-3">
                 <label for="" class="form-label">Le contenu de votre article: </label>
-                {{form_row(form_article.contenuArticle)}}
+                {{form_row(form_article.contenu_article)}}
                 </div>    
             {{form_end(form_article)}}
         </div>
     </div>
 </div>
+
+    {% block javascripts %}
+
+<script>
+var $categorie = $('#article_idCategorie');
+$categorie.change(function() {
+var $form = $(this).closest('form');
+var data = {};
+data[$categorie.attr('name')] = $categorie.val();
+$.ajax({
+url : $form.attr('action'),
+type: $form.attr('method'),
+data : data,
+complete: function(html) {
+$('#article_idSousCategorie').replaceWith($(html.responseText).find('#article_idSousCategorie'));
+}});
+});
+</script>
+{% endblock %}
 {% endblock %}
